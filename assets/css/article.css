@@ -148,13 +148,21 @@
     .sidebar ul li a {
         /* border: red solid; */
         text-decoration: none;
-        color: white;
+        /* color: white; */
+        color:#919191;
+
         font-size: 16px;
         display: flex;
         align-items: center;
         gap: 20px;
         margin-left: 20px;
     }
+    .sidebar ul li a i{
+        font-size: 22px;
+
+    }
+
+
 
     .header {
         height: 100px;
