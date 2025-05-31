@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: #1F1F1F;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .circle-1{
+        position: fixed;
+        display: flex;
+        top: -100px;
+        bottom: 100px;
+        right: 100px;
+        left: 300px;
+        width: 256px;
+        height: 256px;
+        border-radius: 100%;
+        background-color: #FF7300;
+    }
+
+    .circle-2{
+        position: fixed;
+        display: flex;
+        top: 80px;
+        bottom: 100px;
+        right: 100px;
+        left: 1030px;
+        width: 186px;
+        height: 186px;
+        border-radius: 100%;
+        background-color: #FF7300;
+    }
+
+    .circle-3{
+        position: fixed;
+        display: flex;
+        top: 450px;
+        bottom: 10px;
+        right: 0;
+        left: 500px;
+        width: 94px;
+        height: 94px;
+        border-radius: 100%;
+        background-color: #FF7300;
+    }
+    .circle-4{
+        position: fixed;
+        display: flex;
+        top: 630px;
+        bottom: 10px;
+        right: 0;
+        left: 380px;
+        width: 94px;
+        height: 94px;
+        border-radius: 100%;
+        background-color: #FF7300;
+    }
+    .circle-5{
+        position: fixed;
+        display: flex;
+        top: 550px;
+        bottom: 10px;
+        right: 0;
+        left: 1000px;
+        width: 107px;
+        height: 107px;
+        border-radius: 100%;
+        background-color: #FF7300;
+    }
+
+    .login{
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #2d2d2db6 ;
+        backdrop-filter: blur(10px);
+        width: 500px;
+        height: 490px;
+        border-radius: 10px;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        color: #B5B5B5;
+    }
+
+    .user{
+        margin-bottom: 20px;
+    }
+
+    form label{
+        font-size: 22px;
+    }
+
+    form input{
+        width: 350px;
+        height: 50px;
+        border-radius: 10px;
+        border: #FF7300 solid 1px;
+        outline: none;
+        background-color: #1F1F1F;
+        margin-top: 15px;
+        color: #B5B5B5;
+        padding: 20px;
+
+    }
+
+    .solar--user-linear {
+        margin-bottom: 10px;
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.5'%3E%3Ccircle cx='12' cy='6' r='4'/%3E%3Cpath d='M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5Z'/%3E%3C/g%3E%3C/svg%3E");
+        background-color: #FF7300;
+        -webkit-mask-image: var(--svg);
+        mask-image: var(--svg);
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+    }
+
+    form a{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+    a{
+        /* text-align: center; */
+        margin: auto;
+        margin-top: 60px;
+        width: 150px;
+        height: 50px;
+        background-color: #1F1F1F;
+        border: #FF7300 solid 1px;
+        border-radius: 10px;
+        color: #B5B5B5;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        /* justify-content: center; */
+    }
+
+    </style>
+</head>
+<body>
+    <!-- <div class="circle">
+        <div class="circle-1"></div>
+        <div class="circle-2"></div>
+        <div class="circle-3"></div>
+        <div class="circle-4"></div>
+        <div class="circle-5"></div>
+    </div> -->
+
+    <div class="login">
+        <div class="admin">
+            <span class="solar--user-linear"></span>
+        </div>
+        <form action="">
+            <label for="">Username</label>
+            <input class="user" type="text">
+
+            <label for="">Password</label>
+            <input type="password">
+
+            <a href="pages/dashboard.html" type="submit">
+                Login
+            </a>
+        </form>
+    </div>
+
+
+
+    <!-- <footer>
+        Copyright
+    </footer> -->
+</body>
+</html>
