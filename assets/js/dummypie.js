@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         legend: {
             position: 'left',
             horizontalAlign: 'center',
-            fontSize: '14px',
+            // fontSize: '1000px',
             fontWeight: 100,
             itemMargin: {
                 vertical: 6,
