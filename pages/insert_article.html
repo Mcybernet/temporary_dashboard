@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Article</title>
+
+    <!-- custom style -->
+    <link rel="stylesheet" href="../assets/css/article.css">
+
+    <!-- icon bustrep -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/bootstrap-icons.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Chart -->
+     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/4.5.0/apexcharts.min.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/4.5.0/apexcharts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
+    
+    <!-- bustrep -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Data tables -->
+    <!-- <link rel="stylesheet" href="../DataTables/datatables.css">
+    <link rel="stylesheet" href="../DataTables/datatables.min.css">
+    <script src="../DataTables/datatables.js"></script>
+    <script src="../DataTables/datatables.min.js"></script> -->
+    <link rel="stylesheet" href="..//DataTables/datatables.min.css">
+    <script src="../DataTables/datatables.min.js"></script>
+
+    <!-- flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Quill.js -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+
+</head>
+<body>
+    <nav class="navigation">
+        <div class="container-nav">
+            <div class="area-navigation" >
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="header">
+                    <div class="i-admin">
+                        
+                        <div class="card-admin">
+                            <span>Admin</span>
+                            <span>Username</span>
+                        </div>
+                        
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="sidebar" id="sidebar">
+        <div class="logo-image">
+            <img src="../assets/image/Ninetive Logo Fix 2.png" alt="">
+        </div>
+        <ul>
+            <li><a href="dashboard.html"><i class="bi bi-grid"></i>Dashboard</a></li>
+            <li><a href="article.html" style="color: #FF7300;"><i class="bi bi-file-earmark-text"></i>Article</a></li>
+            <li><a href="analytic.html"><i class="bi bi-graph-up"></i>Analytic</a></li>
+        </ul>
+    </div>
+
+
+    <main id="mainContainer">
+
+        <div class="name-page-dashboard" id="dashboardName">
+            <h2>Create Article</h2>
+        </div>
+
+        <div class="container-article">
+            <div class="article" id="card">
+                <form action="">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Thumbnail</label>
+                        <input type="file" class="form-control" id="inputGroupFile01">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Date</label>
+                        <input type="text" class="form-control" id="date-input" placeholder="">
+                        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                        <script>
+                            // Inisialisasi flatpickr
+                            const fp = flatpickr("#date-input", {allowInput: true});
+                            // Ketika ikon diklik, buka datepicker
+                            document.getElementById("icon-trigger").addEventListener("click", () => {fp.open();});
+                        </script>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="date-input" placeholder="">
+                    </div>
+
+                    <div class="area-content" id="contentArea">
+
+                    </div>
+
+                    <div class="bottom-button">
+                        <button class="" type="button" onclick="addText()">Add Content</button>
+                        <button class="" type="submit">Archive</button>
+                        <button class="" type="submit">Save</button>
+                    </div>
+
+                </form>
+                <script>
+                    let editorCount = 0;
+                    const quillEditors = {};
+
+                    function addText() {
+                        const blockId = 'block-' + editorCount;
+                        const editorId = 'editor-' + editorCount;
+                        const inputId = 'input-' + editorCount;
+                        editorCount++;
+
+                        const container = document.createElement('div');
+                        container.id = blockId;
+                        container.innerHTML = `
+                            <div style=" margin-bottom:10px; ; ">
+                                <div id="${editorId}" style="height: 80vh; color:#B5B5B5;"></div>
+                                    <input style="color:#B5B5B5;" type="hidden" name="contents[]" id="${inputId}" required>
+                                    <button style="margin-top:20px;" class="btn" type="button" onclick="removeBlock('${blockId}')">Hapus</button>
+                            </div>
+                        `;
+                        document.getElementById('contentArea').appendChild(container);
+
+                        const quill = new Quill(`#${editorId}`, {
+                            theme: 'snow',
+                            modules: {
+                                toolbar: [
+                                    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                                    ['bold', 'italic', 'underline'],
+                                    ['image', 'code-block']
+                                ]
+                            }
+                        });
+
+                        quillEditors[editorId] = { quill, inputId };
+
+                        // Simpan isi HTML ke input hidden sebelum submit
+                        quill.on('text-change', () => {
+                            document.getElementById(inputId).value = quill.root.innerHTML;
+                        });
+                    }
+
+                    // Hapus blok editor
+                    function removeBlock(blockId) {
+                        const block = document.getElementById(blockId);
+                        if (block) block.remove();
+                    }
+
+                    // Saat form disubmit, pastikan semua input hidden sudah diisi
+                    document.getElementById('blogForm').addEventListener('submit', () => {
+                        for (const { quill, inputId } of Object.values(quillEditors)) {
+                            document.getElementById(inputId).value = quill.root.innerHTML;
+                        }
+                    });
+                    </script>
+            </div>
+        </div>
+
+    
+
+    
+    </main>
+    <script>
+        const hamburger = document.getElementById("hamburger");
+        const sidebar = document.getElementById("sidebar");
+        const dashboardName = document.getElementById("dashboardName");
+        const card = document.getElementById("card");
+        const mainContainer = document.getElementById("mainContainer");
+
+        hamburger.addEventListener("click", () => {
+        sidebar.classList.toggle("active");
+        hamburger.classList.toggle("right");
+        dashboardName.classList.toggle("Dname");
+        card.classList.toggle("for-card");
+        mainContainer.classList.toggle('shrink');
+        });
+    </script>
+        
+    <!-- Apex Chart line Demo js -->
+    
+
+    
+</body>
+</html>
